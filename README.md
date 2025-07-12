@@ -1,1 +1,10 @@
-# method
+- Factoryのメソッド
+- JSメソッド
+- JSの例文
+- laravelメソッド
+- PHPメソッド
+- 機能テストメソッド
+- Carbonメソッド
+- Linuxコマンド
+- mysqlコマンド
+- gitコマンド
