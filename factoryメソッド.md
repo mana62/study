@@ -28,6 +28,7 @@ fake()->unique()->safeEmail();     // nakamura.ryohei@example.com（重複の無
 fake()->phoneNumber(); 		// 0135-67-7343
 
 fake()->company();  		// 株式会社 伊藤
+bcrypt('password');         // パスワード (bcryptがハッシュ化)
 ```
 
 # 文字列
