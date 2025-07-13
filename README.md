@@ -1,10 +1,12 @@
 - Factoryのメソッド
 - JSメソッド
 - JSの例文
-- laravelメソッド
+- laravelメソッド(laravel/laravelメソッド.md)
+- laravelコレクション(laravel/laravelコレクション.md)
 - PHPメソッド
 - 機能テストメソッド
 - Carbonメソッド
 - Linuxコマンド
 - mysqlコマンド
 - gitコマンド
+- Docker(Docker.md)
