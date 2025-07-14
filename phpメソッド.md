@@ -36,6 +36,8 @@
 | `header('Location:〜')` | 指定URLにリダイレクト                      | `header('Location: index.php');`                   | header('Location: URL');                                       |
 | `var_dump()`            | デバッグ用に変数の型と値を表示             | `var_dump($array);`                                | var_dump(変数);                                                |
 | `print_r()`             | 配列などの中身を簡易表示                   | `print_r($array);`                                 | print_r(変数);                                                 |
+|`strip_tags`         | HTMLやPHPタグを除去して**プレーンテキストに変換　 | `strip_tags('<p>Hello <b>World</b></p>', '<b>')` → `Hello <b>World</b>`    |  strip_tags( 文字列 , 許可するタグ );
+
 
 # 少し難易度高メソッド
 | 関数名                    | 説明                                | 基本構文（日本語）                            |
