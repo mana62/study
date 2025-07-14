@@ -117,18 +117,46 @@ PostFactory.php:
 
 // hasMany: 関連を複数生成
 User::factory()
-    ->hasPosts(3)
+    ->hasPosts(3) // 投稿を３件持つユーザーを生成
     ->create();
 
 // ネストした関係もOK（User → Post → Comment）
 User::factory()
     ->has(Post::factory()->hasComments(5))
     ->create();
+
+[補足]
+// 例えばUserモデルに、下記を定義している👇
+
+public function comments()
+{
+    return $this->hasMany(Comment::class);
+}
+
+public function profile()
+{
+    return $this->hasOne(Profile::class);
+}
+
+public function roles()
+{
+    return $this->belongsToMany(Role::class);
+}
+
+// するとFactory.phpで下記のように書ける👇
+
+User::factory()->hasComments(5)->create();
+User::factory()->hasProfile()->create();
+User::factory()->hasRoles(3)->create(); // belongsToMany でも使える
 ```
 
 # UUID
 ```php
-Str::createUuidsUsingSequence([ // UUIDを固定値としてテストしたいとき
+// 通常のuuidを生成 (毎回違う)
+Str::uuid
+
+// UUIDを固定値としてテストしたいとき
+Str::createUuidsUsingSequence([
     'uuid1',
     'uuid2',
     'uuid3',
