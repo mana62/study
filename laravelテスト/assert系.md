@@ -160,6 +160,9 @@ $this->followingRedirects()->post('/login', [...])->assertSee('ようこそ！')
 
 ## 例外発生の確認
 ```php
+$this->withoutExceptionHandling();
+// 例外を通常通り投げられるようにする。public functionの直下に記載する
+
 $this->expectException(OutOfRangeException::class);
 // この後の処理で例外が発生することを期待
 
