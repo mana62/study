@@ -126,6 +126,15 @@ User::factory()
     ->create();
 ```
 
+# UUID
+```php
+Str::createUuidsUsingSequence([ // UUIDを固定値としてテストしたいとき
+    'uuid1',
+    'uuid2',
+    'uuid3',
+]);
+```
+
 # 補足
 ```php
 // laravel で Faker の日本語設定
