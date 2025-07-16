@@ -1,6 +1,7 @@
 # JavasCript
 - [JSメソッド](Javascript/jsメソッド.md)
 - [JSの例文](Javascript/js例文.md)
+- [正規表現](Javascript/正規表現.md)
 
 # PHP
 - [PHPメソッド](phpメソッド.md)
