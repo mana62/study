@@ -339,3 +339,10 @@ function step3() {
   return new Promise(resolve => setTimeout(() => { console.log("step3"); resolve(); }, 1000));
 }
 step();
+```
+
+# 最後の文字だけ出力する
+```js
+const str = "こんにちは";
+const lastChar = str.slice(-1); // → "は"
+```

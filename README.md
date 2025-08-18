@@ -2,6 +2,8 @@
 - [JSメソッド](JavasCript/jsメソッド.md)
 - [JSの例文](JavasCript/js例文.md)
 - [正規表現](JavasCript/正規表現.md)
+- [for...inとfor...of](JavasCript/for...in-for...of.md)
+- [DOM](JavasCript/DOM.md)
 
 # PHP
 - [PHPメソッド](phpメソッド.md)
@@ -9,7 +11,8 @@
 # Laravel
 - [laravelメソッド](laravel/laravelメソッド.md)
 - [laravelコレクション](laravel/laravelコレクション.md)
-- [Factoryのメソッド](factoryメソッド.md)
+- [Factoryのメソッド](laravel/factoryメソッド.md)
+- [Eloquent](laravel/Eloquent.md)
 
 # Laravelテスト系
 - [テストメソッド](laravelテスト/テストメソッド.md)
