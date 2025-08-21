@@ -1,5 +1,7 @@
 # assert 系メソッド
 
+ポイント
+
 ## 基本
 ```php
 $this->assertTrue(true);
@@ -54,6 +56,7 @@ $this->assertStringContainsString('Laravel', 'Laravel勉強中');
 ```php
 $$this->assertDatabaseHas('users', [ 'id' => 1 ]);
 // users テーブルに id=1 のレコードが存在するか
+// ⚠️「テーブル名」と「条件の配列」が必要。モデルは渡せない
 
 $this->assertDatabaseMissing('users', [ 'email' => 'hoge@example.com' ]);
 // users テーブルに該当のレコードが「ない」ことを確認

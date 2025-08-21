@@ -6,7 +6,9 @@
 - [DOM](JavasCript/DOM.md)
 
 # PHP
-- [PHPメソッド](phpメソッド.md)
+- [PHPメソッド](PHP/phpメソッド.md)
+- [記号・演算子](PHP/php記号・演算子.md)
+- [PHP](PHP/関数とアロー関数の違い.md)
 
 # Laravel
 - [laravelメソッド](laravel/laravelメソッド.md)
