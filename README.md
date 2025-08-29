@@ -9,12 +9,14 @@
 - [PHPメソッド](PHP/phpメソッド.md)
 - [記号・演算子](PHP/php記号・演算子.md)
 - [PHP](PHP/関数とアロー関数の違い.md)
+- [引数ルール](PHP/引数のルール.md)
 
 # Laravel
 - [laravelメソッド](laravel/laravelメソッド.md)
 - [laravelコレクション](laravel/laravelコレクション.md)
 - [Factoryのメソッド](laravel/factoryメソッド.md)
 - [Eloquent](laravel/Eloquent.md)
+- [引数ルール](laravel/引数ルール.md)
 
 # Laravelテスト系
 - [テストメソッド](laravelテスト/テストメソッド.md)
@@ -22,6 +24,8 @@
 - [日付のテスト](laravelテスト/日付のテスト.md)
 - [ルート名重複のテスト](laravelテスト/ルート名重複テスト.md)
 - [メールのテスト](laravelテスト/メールのテスト.md)
+- [mock](laravelテスト/mock.md)
+- [文字列操作のヘルパークラス](laravel/ヘルパークラス・メソッド.md)
 
 # Carbon
 - [Carbonメソッド](Carbonメソッド.md)
@@ -47,7 +51,9 @@
 - [物理層](インターネット/物理層.md)
 - [ルーティング](インターネット/ルーティング.md)
 - [進数変換](インターネット/進数変換.md)
+- [進数計算](インターネット/進数計算.md)
 - [OSPF](インターネット/OSPF.md)
 - [IPアドレス計算](インターネット/IPアドレス計算.md)
+
 
 
