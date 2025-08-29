@@ -19,6 +19,7 @@
 - [引数ルール](laravel/引数ルール.md)
 
 # Laravelテスト系
+- [テストの基本](laravelテスト/テストの基本.md)
 - [テストメソッド](laravelテスト/テストメソッド.md)
 - [assert系](laravelテスト/assert系.md)
 - [日付のテスト](laravelテスト/日付のテスト.md)
