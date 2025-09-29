@@ -1,153 +1,156 @@
-# windowオブジェクトがもつ主要なプロパティとメソッド
-| 名称                                 | 種類       | 説明                                   |
-| ------------------------------------ | ---------- | -------------------------------------- |
-| `alert(メッセージ)`                  | メソッド   | ダイアログを表示する                   |
-| `console.log(メッセージ)`            | メソッド   | コンソールにメッセージを表示する       |
-| `setTimeout(関数, ミリ秒)`           | メソッド   | 指定した時間後に関数を実行する         |
-| `setInterval(関数, ミリ秒)`          | メソッド   | 指定した時間ごとに関数を実行する       |
-| `clearTimeout(対象タイマー)`         | メソッド   | `setTimeout()`で設定したタイマーを解除 |
-| `addEventListener(イベント名, 関数)` | メソッド   | イベントを設定する                     |
-| `innerWidth`                         | プロパティ | 画面の幅を取得・変更する               |
-| `innerHeight`                        | プロパティ | 画面の高さを取得・変更する             |
-| `location`                           | プロパティ | URLを取得・変更する                    |
-| `navigator`                          | プロパティ | ブラウザの情報を取得・変更する         |
+# JSメソッド
 
 ---
 
-# documentオブジェクトがもつ主要なプロパティとメソッド
-| 名称                                 | 種類       | 説明                                   |
-| ------------------------------------ | ---------- | -------------------------------------- |
-| `getElementById(id名)`               | メソッド   | id名にマッチする要素を取得する         |
-| `getElementsByClassName(クラス名)`   | メソッド   | クラス名にマッチする要素を全て取得する |
-| `appendChild(要素)`                  | メソッド   | HTMLタグの子要素を追加する             |
-| `removeChild(要素)`                  | メソッド   | HTMLタグの子要素を削除する             |
-| `insertBefore(要素, 挿入位置)`       | メソッド   | HTMLタグの子要素を挿入する             |
-| `createElement(要素名)`              | メソッド   | HTMLタグを作成する                     |
-| `getAttribute(属性名)`               | メソッド   | HTMLタグの属性を取得する               |
-| `setAttribute(属性名, 値)`           | メソッド   | HTMLタグの属性を設定する               |
-| `addEventListener(イベント名, 関数)` | メソッド   | イベントを設定する                     |
-| `parentElement`                      | プロパティ | HTMLタグの親要素を取得する             |
-| `nextElementSibling`                 | プロパティ | HTMLタグの次の要素を取得する           |
-| `previousElementSibling`             | プロパティ | HTMLタグの前の要素を取得する           |
-| `innerHTML`                          | プロパティ | HTMLタグ内のHTMLを取得・変更する       |
-| `innerText`                          | プロパティ | HTMLタグ内のテキストを取得・変更する   |
-| `style`                              | プロパティ | HTMLタグのCSSを取得・変更する          |
-| `classList`                          | プロパティ | HTMLタグのクラスを取得・変更する       |
+## 基本関数・メソッド
+
+| 名称                            | 第一引数                        | 第二引数               | 説明                       | 使用例                                        |
+| ------------------------------- | ------------------------------- | ---------------------- | -------------------------- | --------------------------------------------- |
+| `alert(message)`                | message: 表示する文字列         | なし                   | ダイアログを表示する       | `alert("Hello");`                             |
+| `console.log(message)`          | message: 表示する値             | なし                   | コンソールに出力           | `console.log("Hello");`                       |
+| `setTimeout(func, ms)`          | func: 実行関数                  | ms: ミリ秒             | 指定時間後に一度だけ実行   | `setTimeout(() => console.log("Hi"), 1000);`  |
+| `setInterval(func, ms)`         | func: 実行関数                  | ms: ミリ秒             | 指定時間ごとに繰り返し実行 | `setInterval(() => console.log("Hi"), 1000);` |
+| `clearTimeout(timerId)`         | timerId: setTimeoutの返り値     | なし                   | タイマーを解除             | `clearTimeout(id);`                           |
+| `clearInterval(intervalId)`     | intervalId: setIntervalの返り値 | なし                   | 繰り返しタイマーを停止     | `clearInterval(id);`                          |
+| `addEventListener(event, func)` | event: イベント名               | func: コールバック関数 | イベントを設定             | `window.addEventListener("load", () => {});`  |
+| `innerWidth`                    | なし                            | なし                   | ウィンドウ幅を取得         | `console.log(window.innerWidth);`             |
+| `innerHeight`                   | なし                            | なし                   | ウィンドウ高さを取得       | `console.log(window.innerHeight);`            |
+| `location`                      | なし                            | なし                   | URL情報を取得/変更         | `console.log(location.pathname);`             |
+| `navigator`                     | なし                            | なし                   | ブラウザ情報を取得         | `console.log(navigator.userAgent);`           |
 
 ---
 
-# windowオブジェクトに対するイベント
-| イベント名 | 発生タイミング                 |
-| ---------- | ------------------------------ |
-| `load`     | ページの読み込みが完了したとき |
-| `scroll`   | ページをスクロールしたとき     |
-| `resize`   | ウィンドウサイズが変わったとき |
+## documentオブジェクトのメソッド・プロパティ
 
-```js
-window.addEventListener('load', () => {
-  console.log('ページが読み込まれました');
-});
-
-window.addEventListener('scroll', () => {
-  console.log('スクロールされました');
-});
-
-window.addEventListener('resize', () => {
-  console.log('ウィンドウサイズが変更されました');
-});
-```
-
----
-
-# documentオブジェクトに対するイベント
-| イベント名   | 発生タイミング                           |
-| ------------ | ---------------------------------------- |
-| `click`      | ユーザーがクリックしたとき               |
-| `keydown`    | ユーザーがキーを押したとき               |
-| `keyup`      | ユーザーがキーを離したとき               |
-| `mouseover`  | ユーザーがマウスを要素の上に乗せたとき   |
-| `mouseout`   | ユーザーがマウスを要素の上から離したとき |
-| `mousemove`  | ユーザーがマウスを動かしたとき           |
-| `touchstart` | ユーザーがタッチしたとき                 |
-| `touchmove`  | ユーザーがタッチしたまま動かしたとき     |
-| `touchend`   | ユーザーがタッチを離したとき             |
-
-```js
-document.addEventListener('click', () => {
-  console.log('クリックされました');
-});
-```
----
-
-# 文字列で使えるメソッド
-| メソッド名                  | 対象オブジェクト | 説明                                   | 例                                             | 結果                 |
-| --------------------------- | ---------------- | -------------------------------------- | ---------------------------------------------- | -------------------- |
-| `.slice()` / `.substring()` | 文字列           | 文字列の一部を切り出す                 | `"JavaScript".slice(0, 4)`                     | `"Java"`             |
-| `.split()`                  | 文字列           | 指定した区切り文字で分割し、配列に変換 | `"Hello World".split(" ")`                     | `["Hello", "World"]` |
-| `.indexOf()`                | 文字列           | 最初に一致した文字列の位置を返す       | `"Hello World".indexOf("World")`               | `6`                  |
-| `.toUpperCase()`            | 文字列           | 全て大文字に変換                       | `"Hello".toUpperCase()`                        | `"HELLO"`            |
-| `.toLowerCase()`            | 文字列           | 全て小文字に変換                       | `"HELLO".toLowerCase()`                        | `"hello"`            |
-| `.replace()`                | 文字列           | 最初に一致した文字列を置き換える       | `"Hello World".replace("World", "JavaScript")` | `"Hello JavaScript"` |
-| `.replaceAll()`             | 文字列           | 全て一致した文字列を置き換える         | `"Hello World".replaceAll("l", "L")`           | `"HeLLo WorLd"`      |
-| `.includes()`               | 文字列           | 指定文字列が含まれているか確認         | `"Hello World".includes("World")`              | `true`               |
-| `.trim()`                   | 文字列           | 前後の空白を削除                       | `" Hello World ".trim()`                       | `"Hello World"`      |
-| `.startsWith()`             | 文字列           | 指定文字列で始まるか確認               | `"JavaScript".startsWith("Java")`              | `true`               |
-| `.endsWith()`               | 文字列           | 指定文字列で終わるか確認               | `"JavaScript".endsWith("Script")`              | `true`               |
-| `.charAt()`                 | 文字列           | 指定位置の1文字のみ取得                | `"JavaScript".charAt(4)`                       | `"S"`                |
-| `.substring()`              | 文字列           | 文字列の一部を抽出                     | `"Hello".substring(1, 4)`                      | `"ell"`              |
-| `.closest()`                | DOM要素          | 指定したセレクタに最も近い親要素を取得 | `element.closest(".container")`                | 該当する親要素       |
-| `match()`	  |     文字列           |	       文字列から正規表現に一致する部分を検索     |	`"Hello World".match(/o/g)  |  	["o", "o"]`   |
-
+| 名称                                | 第一引数           | 第二引数          | 説明                         | 使用例                                        |
+| ----------------------------------- | ------------------ | ----------------- | ---------------------------- | --------------------------------------------- |
+| `getElementById(id)`                | id名               | なし              | 指定IDの要素を取得           | `document.getElementById("header");`          |
+| `getElementsByClassName(className)` | クラス名           | なし              | クラス名に一致する要素を取得 | `document.getElementsByClassName("item");`    |
+| `querySelector(selector)`           | CSSセレクタ        | なし              | 条件に一致する最初の要素     | `document.querySelector("#id .class");`       |
+| `querySelectorAll(selector)`        | CSSセレクタ        | なし              | 条件に一致する全要素         | `document.querySelectorAll('[id^="item-"]');` |
+| `appendChild(node)`                 | node: 追加する要素 | なし              | 子要素を追加                 | `parent.appendChild(child);`                  |
+| `removeChild(node)`                 | node: 削除する要素 | なし              | 子要素を削除                 | `parent.removeChild(child);`                  |
+| `replaceChild(newNode, oldNode)`    | newNode: 新要素    | oldNode: 置換対象 | 子要素を置換                 | `parent.replaceChild(newChild, oldChild);`    |
+| `createElement(tag)`                | タグ名             | なし              | HTML要素作成                 | `document.createElement("div");`              |
+| `getAttribute(name)`                | 属性名             | なし              | 属性値取得                   | `el.getAttribute("href");`                    |
+| `setAttribute(name, value)`         | 属性名             | 値                | 属性値設定                   | `el.setAttribute("id", "newId");`             |
+| `parentElement`                     | なし               | なし              | 親要素を取得                 | `el.parentElement;`                           |
+| `nextElementSibling`                | なし               | なし              | 次の兄弟要素取得             | `el.nextElementSibling;`                      |
+| `previousElementSibling`            | なし               | なし              | 前の兄弟要素取得             | `el.previousElementSibling;`                  |
+| `innerHTML`                         | なし               | なし              | 内部HTML取得/変更            | `el.innerHTML = "<p>Hello</p>";`              |
+| `innerText`                         | なし               | なし              | テキスト取得/変更            | `el.innerText = "Hello";`                     |
+| `style`                             | なし               | なし              | CSS操作                      | `el.style.color = "red";`                     |
+| `classList`                         | なし               | なし              | クラス操作                   | `el.classList.add("active");`                 |
+| `closest(selector)`                 | CSSセレクタ        | なし              | 最も近い親要素を取得         | `el.closest(".container");`                   |
 
 ---
 
-# 数値や文字列を変換する関数
-| 関数名            | 対象                       | 説明                              | 例                                                                                                                                                                                             | 結果                      |
-| ----------------- | -------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| `parseInt()`      | 文字列                     | 文字列を整数に変換                | `parseInt("42")`                                                                                                                                                                               | `42`                      |
-| `parseFloat()`    | 文字列                     | 文字列を小数に変換                | `parseFloat("42.56")`                                                                                                                                                                          | `42.56`                   |
-| `.toString()`     | 数値 / 配列 / オブジェクト | 数値や配列を文字列に変換          | `(123).toString()`                                                                                                                                                                             | `"123"`                   |
-| `.toFixed()`      | 数値                       | 小数点以下を指定した桁数で丸める  | `(3.14159).toFixed(2)`                                                                                                                                                                         | `"3.14"`                  |
-| `setTimeout()`    | 関数                       | 一定時間後に処理を実行（1回だけ） | `setTimeout(() => { console.log("Hello!"); }, 3000);`                                                                                                                                          | 3秒後に「Hello!」と表示   |
-| `setInterval()`   | 関数                       | 一定間隔で処理を実行（繰り返し）  | `setInterval(() => { console.log("Hello!"); }, 2000);`                                                                                                                                         | 2秒ごとに「Hello!」と表示 |
-| `clearInterval()` | 関数                       | `setInterval()` を停止する        | `let count = 0; const intervalId = setInterval(() => { count++; console.log(\`Hello! (\${count})\`); if (count === 5) { clearInterval(intervalId); console.log("終了しました！"); } }, 2000);` | 2秒ごとに表示、5回で停止  |
+## windowイベント
+
+| イベント名     | 発生タイミング                     | 使用例                                               |
+| -------------- | ---------------------------------- | ---------------------------------------------------- |
+| `load`         | ページ全体読み込み完了             | `window.addEventListener("load", () => {});`         |
+| `scroll`       | スクロール時                       | `window.addEventListener("scroll", () => {});`       |
+| `resize`       | ウィンドウサイズ変更時             | `window.addEventListener("resize", () => {});`       |
+| `pageshow`     | 戻るボタンなどでキャッシュから表示 | `window.addEventListener("pageshow", () => {});`     |
+| `beforeunload` | ページ離脱直前                     | `window.addEventListener("beforeunload", () => {});` |
 
 ---
 
-# 配列で使えるメソッド
-| メソッド名   | 対象オブジェクト | 説明                                       | 例                                            | 結果        |
-| ------------ | ---------------- | ------------------------------------------ | --------------------------------------------- | ----------- |
-| `.push()`    | 配列             | 配列の末尾に要素を追加                     | `const arr = [1, 2]; arr.push(3);`            | `[1, 2, 3]` |
-| `.pop()`     | 配列             | 配列の末尾の要素を削除                     | `const arr = [1, 2, 3]; arr.pop();`           | `[1, 2]`    |
-| `.shift()`   | 配列             | 配列の先頭の要素を削除                     | `const arr = [1, 2, 3]; arr.shift();`         | `[2, 3]`    |
-| `.unshift()` | 配列             | 配列の先頭に要素を追加                     | `const arr = [2, 3]; arr.unshift(1);`         | `[1, 2, 3]` |
-| `.slice()`   | 配列             | 指定位置の要素を切り出し、新しい配列を作成 | `[1, 2, 3, 4].slice(1, 3)`                    | `[2, 3]`    |
-| `.splice()`  | 配列             | 要素を削除・追加・置換                     | `const arr = [1, 2, 3, 4]; arr.splice(1, 2);` | `[1, 4]`    |
-| `.sort()`    | 配列             | 要素を並べ替える                           | `[4, 2, 7].sort()`                            | `[2, 4, 7]` |
-| `.reverse()` | 配列             | 順序を逆にする                             | `[1, 2, 3].reverse()`                         | `[3, 2, 1]` |
-| `.filter()`  | 配列             | 条件に一致する要素を抽出                   | `[1, 2, 3].filter(num => num > 1)`            | `[2, 3]`    |
-| `.map()`     | 配列             | 各要素を加工して新しい配列を作成           | `[1, 2, 3].map(num => num * 2)`               | `[2, 4, 6]` |
-| `.reduce()`  | 配列             | 配列の要素を使って計算する                 | `[1, 2, 3].reduce((a, b) => a + b, 0)`        | `6`         |
+## 文字列メソッド
+
+| メソッド                      | 第一引数  | 第二引数 | 説明             | 使用例                      | 結果            |
+| ----------------------------- | --------- | -------- | ---------------- | --------------------------- | --------------- |
+| `.slice(start, end)`          | start     | end      | 部分文字列取得   | `"JavaScript".slice(0,4)`   | `"Java"`        |
+| `.substring(start,end)`       | start     | end      | 部分文字列取得   | `"Hello".substring(1,4)`    | `"ell"`         |
+| `.split(separator)`           | separator | なし     | 配列に変換       | `"a,b,c".split(",")`        | `["a","b","c"]` |
+| `.indexOf(search)`            | search    | なし     | 文字列位置       | `"Hello".indexOf("e")`      | `1`             |
+| `.toUpperCase()`              | なし      | なし     | 大文字に変換     | `"hi".toUpperCase()`        | `"HI"`          |
+| `.toLowerCase()`              | なし      | なし     | 小文字に変換     | `"HI".toLowerCase()`        | `"hi"`          |
+| `.replace(search,replace)`    | search    | replace  | 最初の一致置換   | `"abc".replace("a","A")`    | `"Abc"`         |
+| `.replaceAll(search,replace)` | search    | replace  | 全置換           | `"aaa".replaceAll("a","b")` | `"bbb"`         |
+| `.includes(sub)`              | sub       | なし     | 含むか判定       | `"abc".includes("b")`       | `true`          |
+| `.trim()`                     | なし      | なし     | 前後空白削除     | `" a ".trim()`              | `"a"`           |
+| `.startsWith(str)`            | str       | なし     | 開始文字列判定   | `"abc".startsWith("a")`     | `true`          |
+| `.endsWith(str)`              | str       | なし     | 終了文字列判定   | `"abc".endsWith("c")`       | `true`          |
+| `.charAt(pos)`                | pos       | なし     | 指定位置文字取得 | `"abc".charAt(1)`           | `"b"`           |
 
 ---
 
-# オブジェクトで使えるメソッド
-| メソッド名         | 対象オブジェクト | 説明                             | 例                                  | 結果                   |
-| ------------------ | ---------------- | -------------------------------- | ----------------------------------- | ---------------------- |
-| `Object.keys()`    | オブジェクト     | オブジェクトのプロパティ名を取得 | `Object.keys({a: 1, b: 2})`         | `["a", "b"]`           |
-| `Object.values()`  | オブジェクト     | オブジェクトの値を取得           | `Object.values({a: 1, b: 2})`       | `[1, 2]`               |
-| `Object.entries()` | オブジェクト     | キーと値のペアを取得             | `Object.entries({a: 1, b: 2})`      | `[["a", 1], ["b", 2]]` |
-| `delete`           | オブジェクト     | プロパティを削除                 | `const obj = {a: 1}; delete obj.a;` | `{}`                   |
-| `in`               | オブジェクト     | プロパティが存在するか確認       | `"a" in {a: 1}`                     | `true`                 |
-| `JSON.stringify()` | オブジェクト     | オブジェクトを文字列に変換       | `JSON.stringify({a: 1, b: 2})`      | `'{"a":1,"b":2}'`      |
-| `JSON.parse()`     | オブジェクト     | 文字列をオブジェクトに戻す       | `JSON.parse('{"a":1,"b":2}')`       | `{a: 1, b: 2}`         |
+## 数値メソッド / Math
+
+| メソッド            | 第一引数 | 第二引数 | 説明             | 使用例            | 結果   |
+| ------------------- | -------- | -------- | ---------------- | ----------------- | ------ |
+| `Math.random()`     | なし     | なし     | 0以上1未満の乱数 | `Math.random()`   | 0.123… |
+| `Math.ceil(num)`    | num      | なし     | 小数切り上げ     | `Math.ceil(2.3)`  | 3      |
+| `Math.floor(num)`   | num      | なし     | 小数切り捨て     | `Math.floor(2.7)` | 2      |
+| `Math.max(...nums)` | 数値     | なし     | 最大値           | `Math.max(1,5)`   | 5      |
+| `Math.min(...nums)` | 数値     | なし     | 最小値           | `Math.min(1,5)`   | 1      |
+| `Math.sqrt(num)`    | num      | なし     | 平方根           | `Math.sqrt(16)`   | 4      |
 
 ---
 
-# Mathオブジェクトで使えるメソッド
-| メソッド名    | 対象オブジェクト | 説明         | 例                  | 結果 |
-| ------------- | ---------------- | ------------ | ------------------- | ---- |
-| `Math.sqrt()` | Math             | 平方根を返す | `Math.sqrt(16)`     | `4`  |
-| `Math.max()`  | Math             | 最大値を返す | `Math.max(1, 5, 3)` | `5`  |
-| `Math.min()`  | Math             | 最小値を返す | `Math.min(1, 5, 3)` | `1`  |
+## JSONメソッド
 
+| メソッド              | 第一引数        | 第二引数              | 第三引数 | 説明                      | 使用例                           |
+| --------------------- | --------------- | --------------------- | -------- | ------------------------- | -------------------------------- |
+| `JSON.parse(str)`     | str: JSON文字列 | reviver（オプション） | なし     | 文字列 → JSオブジェクト   | `JSON.parse('{"a":1}')`          |
+| `JSON.stringify(obj)` | obj             | replacer              | space    | オブジェクト → JSON文字列 | `JSON.stringify({a:1}, null, 2)` |
+
+---
+
+## Web Storage
+
+| メソッド                             | 第一引数    | 第二引数      | 説明                 | 使用例                                |
+| ------------------------------------ | ----------- | ------------- | -------------------- | ------------------------------------- |
+| `localStorage.setItem(key, value)`   | key: 文字列 | value: 文字列 | 永続的に保存         | `localStorage.setItem("id","123");`   |
+| `localStorage.getItem(key)`          | key         | なし          | データ取得           | `localStorage.getItem("id")`          |
+| `sessionStorage.setItem(key, value)` | key         | value         | セッション単位で保存 | `sessionStorage.setItem("id","123");` |
+| `sessionStorage.getItem(key)`        | key         | なし          | データ取得           | `sessionStorage.getItem("id")`        |
+
+---
+
+## 日付メソッド
+
+| メソッド                                  | 第一引数 | 第二引数 | 説明                     | 使用例                         |
+| ----------------------------------------- | -------- | -------- | ------------------------ | ------------------------------ |
+| `new Date()`                              | なし     | なし     | 現在日時オブジェクト生成 | `const d = new Date();`        |
+| `date.getDate()`                          | なし     | なし     | 日                       | `d.getDate();`                 |
+| `date.getFullYear()`                      | なし     | なし     | 年（4桁）                | `d.getFullYear();`             |
+| `date.getMonth()`                         | なし     | なし     | 月（0-11）               | `d.getMonth();`                |
+| `date.setDate(num)`                       | num      | なし     | 日を設定                 | `d.setDate(15);`               |
+| `String.prototype.padStart(length, char)` | length   | char     | 文字列先頭埋め           | `"5".padStart(2,"0")` → `"05"` |
+
+---
+
+## URL操作
+
+| メソッド / プロパティ               | 第一引数 | 第二引数 | 説明                        | 使用例                                  |
+| ----------------------------------- | -------- | -------- | --------------------------- | --------------------------------------- |
+| `encodeURIComponent(str)`           | str      | なし     | URLパラメータ用にエンコード | `encodeURIComponent("a&b")` → `"a%26b"` |
+| `location.pathname`                 | なし     | なし     | 現在ページのパス取得        | `console.log(location.pathname);`       |
+| `URLSearchParams.get(key)`          | key      | なし     | クエリパラメータ取得        | `params.get("id")`                      |
+| `URLSearchParams.set(key,value)`    | key      | value    | クエリ更新                  | `params.set("page","2")`                |
+| `URLSearchParams.append(key,value)` | key      | value    | クエリ追加                  | `params.append("tag","news")`           |
+| `URLSearchParams.delete(key)`       | key      | なし     | クエリ削除                  | `params.delete("sort")`                 |
+| `URLSearchParams.toString()`        | なし     | なし     | クエリ文字列化              | `params.toString()` → `"id=123"`        |
+
+---
+
+## RegExp / 正規表現
+
+| 構文                            | 説明                            | 使用例                                        |
+| ------------------------------- | ------------------------------- | --------------------------------------------- |
+| `new RegExp("pattern","flags")` | 正規表現オブジェクト生成        | `new RegExp("\\b3\\b","g")`                   |
+| `\b`                            | 単語境界                        | `/\bword\b/`                                  |
+| `[id^="item-"]`                 | 属性セレクタ、idがitem-で始まる | `document.querySelectorAll('[id^="item-"]');` |
+
+---
+
+## その他便利関数
+
+| 関数                   | 第一引数 | 第二引数 | 説明         | 使用例                                |
+| ---------------------- | -------- | -------- | ------------ | ------------------------------------- |
+| `Array.isArray(value)` | value    | なし     | 配列か判定   | `Array.isArray([1,2])` → `true`       |
+| `crypto.randomUUID()`  | なし     | なし     | UUID生成     | `crypto.randomUUID()`                 |
+| `stripHtmlTags(str)`   | str      | なし     | HTMLタグ削除 | `stripHtmlTags("<p>Hi</p>")` → `"Hi"` |

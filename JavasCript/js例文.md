@@ -346,3 +346,76 @@ step();
 const str = "こんにちは";
 const lastChar = str.slice(-1); // → "は"
 ```
+
+# 親要素.append(key, value)：指定した親要素の最後に小要素やテキストを挿入する
+
+```js
+const formData = new FormData(); // ①作る
+formData.append("name", "taro"); // ②追加する
+fetch("/submit", { method: "POST", body: formData }); // ③送る
+```
+
+# 45日後を表示
+```js
+const today = new Date(); // 今日の日付
+today.setDate(today.getDate() + 45); // 45日後に更新
+
+// YYYY-MM-DD 形式に整形
+const yyyy = today.getFullYear();
+const mm = String(today.getMonth() + 1).padStart(2, '0'); // 月は0始まり
+const dd = String(today.getDate()).padStart(2, '0');
+
+const formatted = `${yyyy}-${mm}-${dd}`;
+console.log(formatted); // 例: "2025-10-23"
+```
+
+# urlに含めると問題になる特殊文字（例：&, =, ?, /, 空白など）を正規化する
+```js
+const name = "山田=太郎";
+const encoded = encodeURIComponent(name);
+console.log(encoded); // → %E5%B1%B1%E7%94%B0%3D%E5%A4%AA%E9%83%8E
+
+// 下記のような表示になる👇
+
+https://example.com?name=%E5%B1%B1%E7%94%B0%3D%E5%A4%AA%E9%83%8E
+```
+
+# 削除ボタンを押したときに、そのボタンが属してるブロックを消したい
+```html
+<div class="item">
+  <span>商品A</span>
+  <button class="remove">削除</button>
+</div>
+```
+
+```js
+document.querySelectorAll('.remove').forEach(btn => {
+  btn.addEventListener('click', function() {
+    this.closest('.item').remove();
+  });
+});
+// this はボタン。そこから一番近い .item(親要素) を探して削除
+```
+
+# 入力欄の中で、親の .form-group にエラー表示したい
+```js
+const input = document.querySelector('.email');
+const group = input.closest('.form-group');
+group.classList.add('has-error');
+// 「この input が属してるフォームのまとまり」に対して処理したいとき
+```
+
+# クリックした要素が、どのセクションに属してるか知りたい
+```js
+element.closest('.section')
+// 「どの質問ブロックの中でクリックされたか」を判定したいときに使える
+
+
+
+// [closest の役割]
+// ・削除ボタン → 親を消す	this.closest('.item').remove()
+// ・入力欄 → 親にエラー表示	input.closest('.form-group')
+// ・クリック位置 → セクション判定	element.closest('.section')
+```
+
+

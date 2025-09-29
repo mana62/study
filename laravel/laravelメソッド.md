@@ -37,3 +37,51 @@
 | `unless()`       | 条件、true時の処理                          | 条件がfalseの時だけ処理を実行                    | `unless($条件, fn()=>...)`                             | `unless(empty($name), fn()=>...)`                                |
 | `blank()`        | 任意の値                                    | 空・null・空配列・空文字列などを判定             | `blank($value)`                                        | `blank('') // true`                                              |
 | `filled()`       | 任意の値                                    | blankの逆、値があるかどうかを確認                | `filled($value)`                                       | `filled('Laravel') // true`                                      |
+
+
+
+## session系
+| メソッド                               | 意味・使い方                                                                                    |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `session()->get('キー', デフォルト値)` | 値を取り出す。なければデフォルト値を返す。<br>例：`session()->get('user_id', 0)`              |
+| `session()->put('キー', 値)`           | 値を保存する。セッションにデータをセット。<br>例：`session()->put('step', 2)`                 |
+| `session()->flash('キー', 値)`         | 一時保存する。次のリクエストまでだけ保持。<br>例：`session()->flash('error', '失敗しました')` |
+| `session()->has('キー')`               | 存在チェック。そのキーがあるかどうか。<br>例：`if (session()->has('token'))`                  |
+
+
+
+$model名->touch：touchメソッドは、指定したモデルのupdate_atを更新するメソッド。関連するモデルなども更新できる。
+
+
+
+自作のクエリスコープ：よく使うクエリ条件を再利用可能な形で定義する方法(モデルに書く)
+
+例：モデル
+```php
+// App\Models\PlanDetail.php
+
+public function scopeOrdered($query)
+{
+    return $query->orderByRaw('sort_order IS NULL, sort_order ASC')->orderBy('id', 'asc');
+}
+```
+
+呼び出す時
+```bash
+PlanDetail::ordered()->get(); // Ordered部分だけを取る
+```
+
+
+
+
+
+
+blade
+
+```bash
+{{ $loop->iteration }}
+```
+1から始まるループ回数を返す(1,2,3)
+
+
+getHost():現在アクセスしているリクエストの「ホスト名（ドメイン）」だけを取得するメソッド

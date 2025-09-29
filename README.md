@@ -4,6 +4,9 @@
 - [正規表現](JavasCript/正規表現.md)
 - [for...inとfor...of](JavasCript/for...in-for...of.md)
 - [DOM](JavasCript/DOM.md)
+- [イベント](JavasCript/イベント.md)
+- [JSON](JavasCript/json.md)
+- [プロパティ](JavasCript/プロパティ.md)
 
 # PHP
 - [PHPメソッド](PHP/phpメソッド.md)
@@ -42,6 +45,15 @@
 
 # Docker
 - [Docker](Docker.md)
+
+# コンポーネント
+- [コンポーネント](コンポーネント.md)
+
+# 属性セレクター
+- [CSS・JS属性セレクター](CSS・JS属性セレクター.md)
+
+# キャッシュ&セッション
+- [キャッシュ&セッション](キャッシュ&セッション.md)
 
 # インフラ
 - [ネットワーク基礎](ネットワーク/ネットワーク基礎.md)

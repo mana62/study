@@ -148,3 +148,9 @@ ls file?.txt  # file1.txt はOK, file10.txtはNG
 - Q9. df -h で何がわかる？
 → **ディスクの空き容量・使用率など**
 
+
+
+
+
+`grep -r '検索したい文字列' resources/views ← 検索したいルート`
+➡️ -r このrは、「ディレクトリ全体」を確認するためのオプション
