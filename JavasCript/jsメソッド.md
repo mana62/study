@@ -154,3 +154,9 @@
 | `Array.isArray(value)` | value    | なし     | 配列か判定   | `Array.isArray([1,2])` → `true`       |
 | `crypto.randomUUID()`  | なし     | なし     | UUID生成     | `crypto.randomUUID()`                 |
 | `stripHtmlTags(str)`   | str      | なし     | HTMLタグ削除 | `stripHtmlTags("<p>Hi</p>")` → `"Hi"` |
+
+
+
+
+
+`toLocaleString()`:数値にカンマを入れるメソッド 例: 1300 → 1,300
