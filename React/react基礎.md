@@ -326,6 +326,19 @@ export const Counter = () => {
 | Props          | 外から渡される値（パラメータ） | 親コンポーネント   | 子コンポーネントは変更不可 |
 | State          | 内部で変化する値               | コンポーネント自身 | 変更可能（useState）       |
 
+---
+
+## prevState
+➡️ Reactの状態更新は非同期で行われることが多いため、うまく更新されないことがある。
+そのため、「前の状態を確実に使いたいとき」は、**prevState**を使う
+
+- Reactで setCount などの「更新関数」を使うとき、前の値をもとに新しい値を計算したいことがある。
+- そのときに「prevState（前のstate）」を引数として使う。
+
+```jsx
+setCount((prevState) => prevState + 1);
+```
+-  prevState は「前の count の値」を表す
 
 ---
 
