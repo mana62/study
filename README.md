@@ -8,6 +8,8 @@
 - [JSON](JavasCript/json.md)
 - [プロパティ](JavasCript/プロパティ.md)
 - ["1"や"0"の意味](./JavasCript/"1"や"0"の意味.md)
+- [jQuery](./JavasCript/jQuery.md)
+- [Laravel + Viteでhttps](./JavasCript/viteでhttps.md)
 
 # PHP
 - [PHPメソッド](PHP/phpメソッド.md)
@@ -37,6 +39,10 @@
 - [メールのテスト](laravelテスト/メールのテスト.md)
 - [mock](laravelテスト/mock.md)
 - [文字列操作のヘルパークラス](laravelテスト/ヘルパークラス・メソッド.md)
+- [テストツール(laravel + alpine.js)](laravelテスト/テストツール.md)
+- [外部連携APIのテスト](laravelテスト/外部連携APIのテスト.md)
+- [CRUDのテスト](laravelテスト/CRUDのテスト.md)
+- [Laravel Dusk](laravelテスト/LaravelDusk.md)
 
 # Carbon
 - [Carbonメソッド](Carbonメソッド.md)
