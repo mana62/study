@@ -99,3 +99,6 @@
 | `stream_context_create()` | HTTPリクエスト用コンテキスト作成   | 配列         | -                      | `stream_context_create(配列);`                  |
 | `explode()`               | 文字列を区切って配列に変換         | 区切り文字   | 文字列                 | `explode(",", "a,b,c") // ['a','b','c']`        |
 | `implode()`               | 配列を文字列に結合                 | 区切り文字   | 配列                   | `implode("-", ['a','b','c']) // "a-b-c"`        |
+
+
+ucfirst(): PHPの文字列関数 (文字列の最初の文字を大文字に変換する)

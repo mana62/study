@@ -1,5 +1,5 @@
 # Alpine.js
-➡️ JavaScriptフレームワーク
+→ JavaScriptフレームワーク
 
 ---
 
@@ -156,3 +156,84 @@
 | `x-ref` | 要素を参照する | `<div x-ref="box"></div>` | JSで特定の要素を操作したいとき |
 | `x-init` | 初期化処理を実行 | `<div x-init="count=0"></div>` | 初期値設定やロード時の処理に使う |
 | `x-cloak` | 初期表示を非表示にする | `<div x-cloak x-show="show">表示</div>` | Alpineが読み込まれるまで一瞬表示されたくない要素 |
+
+---
+
+## `$refs` とは
+- Alpine.jsが自動で提供してくれる、**`x-ref` を付けたDOM要素にアクセスするための特別なプロパティ**
+- `$refs.名前` で、`x-ref="名前"` を付けた要素にアクセスできる
+- JavaScriptの `document.querySelector()` の代わりになるような使い方ができる
+
+##### 例
+```html
+<div x-data>
+  <input type="text" x-ref="myInput">
+  <button @click="alert($refs.myInput.value)">表示</button>
+</div>
+```
+
+---
+
+## マジックプロパティ一覧
+| プロパティ | 説明 |
+|------------|------|
+| `$el`      | 現在のコンポーネントのルート要素（`x-data` が付いてる要素） |
+| `$refs`    | `x-ref` を付けた要素にアクセスするための参照オブジェクト |
+| `$root`    | 最上位の `x-data` を持つ要素（ルートコンポーネント） |
+| `$watch`   | データの変化を監視して、処理を実行するための関数 |
+| `$store`   | グローバルな状態管理（Alpineのストア機能）※別途定義が必要 |
+
+---
+
+## x-cloak と x-data の違い
+| 属性 | 役割 |
+|------------|------|
+| `x-cloak`      | Alpineが初期化されるまでの一瞬の表示を防ぐ |
+| `x-data`    | Alpineのコンポーネントを定義する（データや動作の起点） |
+
+---
+
+## Alpine.store()	とは
+→  複数のコンポーネントで共通のデータを管理するための仕<br>
+→ Alpine.jsでグローバルな状態（データ）を定義して、どこからでもアクセスできるようにする関数
+
+- x-data はローカルな状態 → その要素の中だけで使える
+- Alpine.store() はグローバルな状態 → どのコンポーネントからでも $store 経由でアクセス可能
+
+#### 基本の使い方
+```bash
+<script>
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('menu', {
+      open: false,
+      toggle() {
+        this.open = !this.open;
+      }
+    });
+  });
+</script>
+
+<div x-data>
+  <button @click="$store.menu.toggle()">切り替え</button>
+  <div x-show="$store.menu.open">メニューが開いてるよ！</div>
+</div>
+```
+
+**ポイント**
+- **Alpine.store('名前', {...})**	グローバルな状態を定義
+- **$store.名前.プロパティ**	定義した状態にアクセス
+- **$store.名前.関数()**	定義した関数を呼び出す
+- **alpine:init イベント**	Alpineの初期化タイミングでストアを登録
+
+---
+
+## Alpine.jsの主なマジックプロパティ一覧
+
+| プロパティ | 説明 |
+|------------|------|
+| `$el`      | 現在のコンポーネントのルート要素（`x-data` が付いてる要素） |
+| `$refs`    | `x-ref` を付けた要素にアクセスするための参照オブジェクト |
+| `$root`    | 最上位の `x-data` を持つ要素（ルートコンポーネント） |
+| `$watch`   | データの変化を監視して、処理を実行するための関数 |
+| `$store`   | `Alpine.store()` で定義されたグローバル状態にアクセスするための入り口 |
+| `$event`   | イベントハンドラ内で現在のイベントオブジェクトにアクセスするためのプロパティ |

@@ -100,3 +100,30 @@ $('#box').hide(); // boxを隠す
 $('#box').css('color', 'red'); // 文字色を赤にする
 $('#input').val(); // inputの値を取得
 ```
+
+---
+
+## jQueryの $.ajax() オプション
+
+| オプション       | 説明 |
+|------------------|------|
+| `url`            | 通信先のURL |
+| `method` または `type` | HTTPメソッド（例：`GET`, `POST`） |
+| `data`           | サーバーに送るデータ（オブジェクト形式） |
+| `success`        | 通信が成功したときに呼ばれる関数 |
+| `error`          | 通信が失敗したときに呼ばれる関数 |
+| `dataType`       | 受け取るデータの型（例：`json`, `text`） |
+| `headers`        | リクエストヘッダーの設定 |
+
+
+
+```bash
+$.ajax({
+  url: '/api/user',           # 通信先
+  method: 'POST',             # POSTメソッドで送信
+  data: { name: 'Taro' },     # 送るデータ
+  success: function(response) {
+    console.log(response);    # 成功時の処理
+  }
+});
+```

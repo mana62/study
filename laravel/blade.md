@@ -36,10 +36,34 @@
 ```
 ---
 
+## @can: 認可チェック
+- このユーザーがこの操作をしていいか？を判定して、表示を切り替えるために使う
+
+```bash
+@can('update', $post)
+    <a href="{{ route('posts.edit', $post) }}">編集する</a>
+@endcan
+# ログイン中のユーザーが $post を 更新できる権限を持っていれば、リンクが表示される
+```
+
+### どこで権限を定義するのか
+- 通常は Policyクラスで定義する
+
+```bash
+public function update(User $user, Post $post)
+{
+    return $user->id === $post->user_id;
+}
+```
+→ つまり、@can('update', $post) はこの update() メソッドを呼び出して判定してる
+
+---
+
 ## まとめ
 - @stack：コンテンツを入れる場所を用意する
 - @push：その用意した場所にコンテンツを追加する
 - @once：同じ内容を一度だけ表示させる
+- @can： 認可チェック
 
 ---
 
