@@ -102,3 +102,35 @@
 
 
 ucfirst(): PHPの文字列関数 (文字列の最初の文字を大文字に変換する)
+unserialize :
+    - 引数：シリアライズされた文字列（serialize() で作られたやつ）
+    - 戻り値：元の配列・オブジェクトなど
+json_last_error : 直前に実行した json_encode() や json_decode() のエラーコードを返す
+
+JSON_ERROR_NONE : 値は 0 「エラーがない」という意味
+Throwable : 「Exception」も「Error」も全部まとめてキャッチできる. (エラーをキャッチできるもの)
+chunk : 一度に処理するデータの件数を制限するためのもの
+
+
+
+# PHP mbstring 文字コード系関数一覧
+
+| メソッド名               | 意味・目的                                           | 第1引数           | 第2引数           | 使い方例                                                                 | 備考                                       |
+|--------------------------|------------------------------------------------------|-------------------|-------------------|------------------------------------------------------------------------|--------------------------------------------|
+| `mb_detect_encoding`     | 文字列のエンコーディングを推測                      | 対象文字列        | エンコーディング候補配列（任意） | `mb_detect_encoding($str, ['UTF-8', 'SJIS'])`                          | 推測なので100%正確ではない                 |
+| `mb_convert_encoding`    | 文字列のエンコーディングを変換                      | 対象文字列        | 変換後のエンコーディング | `mb_convert_encoding($str, 'UTF-8', 'SJIS')`                          | from-toの順番に注意                         |
+| `mb_convert_variables`   | 複数変数の文字コードを一括変換                      | 変換後のエンコーディング | 変換前のエンコーディング | `mb_convert_variables('UTF-8', 'SJIS', $var1, $var2)`                 | 配列や複数変数に使える                      |
+| `mb_check_encoding`      | 文字列が指定エンコーディングで有効かを確認          | 対象文字列        | エンコーディング（任意） | `mb_check_encoding($str, 'UTF-8')`                                    | バリデーション用途に便利                   |
+| `mb_detect_order`        | エンコーディング検出順序の取得・設定                | 検出順配列（任意）| なし               | `mb_detect_order(['UTF-8', 'SJIS'])`                                  | `mb_detect_encoding`の精度に影響            |
+| `mb_encoding_aliases`    | エンコーディングの別名一覧を取得                    | エンコーディング名 | なし               | `mb_encoding_aliases('UTF-8')`                                        | UTF-8の別名一覧など                        |
+| `mb_convert_kana`        | カナ文字の全角・半角変換                            | 対象文字列        | オプション指定     | `mb_convert_kana($str, 'KV')`                                         | `'KV'`などで変換内容を指定                  |
+| `mb_encode_mimeheader`   | MIMEヘッダ用に文字列をエンコード                    | 対象文字列        | エンコーディング（任意） | `mb_encode_mimeheader($str, 'UTF-8')`                                 | メール送信時などに便利                     |
+| `mb_decode_mimeheader`   | MIMEヘッダの文字列をデコード                        | 対象文字列        | なし               | `mb_decode_mimeheader($str)`                                          | エンコードされたヘッダを元に戻す            |
+| `mb_encode_numericentity`| 文字列をHTML数値エンティティに変換                 | 対象文字列        | 変換設定配列       | `mb_encode_numericentity($str, $convmap)`                             | HTMLエンティティ化                          |
+| `mb_decode_numericentity`| HTML数値エンティティを文字列に変換                 | 対象文字列        | 変換設定配列       | `mb_decode_numericentity($str, $convmap)`                             | `mb_encode_numericentity`の逆               |
+
+
+
+
+
+substr(文字列, 開始位置, 長さ)

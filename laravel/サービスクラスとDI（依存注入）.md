@@ -134,6 +134,160 @@ class UserController extends Controller
 - サービス： 実際に仕事をこなす人（業務担当）
 - モデル： データ（商品・注文など）そのもの
 
+---
+
+## まとめ
+
+| 用語           | 意味                                |
+| ------------ | --------------------------------- |
+| **サービスクラス**  | ビジネスロジックをまとめたクラス                  |
+| **DI（依存注入）** | コントローラの中でサービスクラスを「自動で」使えるようにする仕組み |
+| **メリット**     | コントローラがスッキリして、テストや再利用がしやすくなる      |
+
+
+---
+
+## 考え方
+
+```php
+// サービスクラス
+namespace App\Services;
+
+use App\Models\○○;
+
+class 〇〇Service
+{
+    public function メソッド名(array $data)
+    {
+        // 1. モデルを作る or 更新する
+        // 2. 関連データを処理する
+        // 3. イベント発火する
+        // 4. ジョブを dispatch する
+        // 5. 結果を返す
+    }
+}
+
+public function register(array $data)
+{
+    // ユーザー作成
+    // メール認証用トークン生成
+    // メール送信
+}
+
+public function update(User $user, array $data)
+{
+    // プロフィール更新
+    // アイコン画像アップロード
+    // 古い画像削除
+}
+
+public function start(User $user, string $plan)
+{
+    // Stripe APIを叩く
+    // DBに購読を保存
+    // 初回メール送信
+}
+
+public function charge(User $user, int $amount)
+{
+    // 決済実行
+    // 成功したら注文作成
+    // レシート送信
+}
+
+public function generateMonthly()
+{
+    // 売上集計
+    // PDF生成
+    // メール送付
+}
+
+public function calculate(array $conditions)
+{
+    // ユーザー数集計
+    // 商品売上ランキング
+    // キャッシュに保存
+}
+
+public function upload(UploadedFile $file)
+{
+    // リサイズ
+    // S3保存
+    // URL返す
+}
+
+public function process($file)
+{
+    // サムネイル生成
+    // エンコード
+    // 保存
+}
+
+public function post(User $user, string $text)
+{
+    // OAuthで認証
+    // APIに投稿
+    // エラー処理
+}
+
+public function sync()
+{
+    // 気象API取得
+    // DB更新
+    // キャッシュ refresh
+}
+
+public function alert(string $type, array $details)
+{
+    // Slack通知
+    // メール通知
+    // DBログを保存
+}
+
+public function reserve(User $user, array $data)
+{
+    // 空き確認
+    // 予約作成
+    // 決済（必要なら）
+    // 通知送信
+}
+
+
+// 例：userクラス
+namespace App\Services;
+
+use App\Models\User;
+use App\Jobs\SendWelcomeMailJob;
+
+class UserService
+{
+    public function register(array $data)
+    {
+        // 1. ユーザーを作成
+        $user = User::create($data);
+
+        // 2. メール送信ジョブを実行 (非同期)
+        SendWelcomeMailJob::dispatch($user->email);
+
+        // 3. 作成したユーザーを返す
+        return $user;
+    }
+}
+
+```
+
+```php
+// サービスクラスを呼ぶとき
+class OrderController
+{
+    public function __construct(private OrderService $orderService) {}
+
+    public function store(Request $request)
+    {
+        return $this->orderService->createOrder($request->validated());
+    }
+}
+```
 
 ---
 

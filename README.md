@@ -14,8 +14,9 @@
 - ["1"や"0"の意味](JavasCript/"1"や"0"の意味.md)
 - [jQuery](JavasCript/jQuery.md)
 - [Laravel + Viteで https 対応](JavasCript/viteでhttps.md)
-- [Alpine.js](JavasCript/Alpine.md)
+- [Alpine.js](JavasCript/Alpine.md)[
 - [ドラッグ&ドロップ](JavasCript/ドラック&ドロップ.md)
+- [Vue.js](./JavasCript/vue.md)
 
 ---
 
@@ -34,6 +35,7 @@
 - [laravelメソッド](laravel/laravelメソッド.md)
 - [laravelコレクション](laravel/laravelコレクション.md)
 - [Factoryのメソッド](laravel/factoryメソッド.md)
+- [DBファサード](laravel/DBファサード.md)
 - [Eloquent](laravel/Eloquent.md)
 - [引数ルール](laravel/引数ルール.md)
 - ["1"や"0"の意味](laravel/"1"や"0"の意味.md)
@@ -51,7 +53,7 @@
 - [アクセサとミューテタ](laravel/アクセサとミューテタ.md)
 - [イベントとリスナー](laravel/イベントとリスナー.md)
 - [クエリスコープ](laravel/クエリスコープ.md)
-- [サービスクラス](laravel/サービスクラス.md)
+- [サービスクラスとDI（依存注入）](./laravel/サービスクラスとDI（依存注入）.md)
 - [効率（自動生成・便利系）](laravel/効率.md)
 - [Devcontainer](laravel/Devcontainer.md)
 

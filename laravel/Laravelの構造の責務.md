@@ -59,3 +59,8 @@ HTTPリクエスト
 - Trait：複数クラスで共通処理を使う
 - Service Class：ビジネスロジックまとめ役
 - Console/Command：定期処理やCLI用
+
+---
+
+## 参考
+- [GitHub](https://github.com/alexeymezenin/laravel-best-practices/blob/master/japanese.md#%E3%82%B3%E3%83%B3%E3%83%86%E3%83%B3%E3%83%84)
