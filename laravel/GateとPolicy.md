@@ -10,9 +10,11 @@
 ```php
 # App\Providers\AuthServiceProvider の中で定義する
 # 管理者だけがダッシュボードを見られる
+public function boot(){
 Gate::define('view-dashboard', function ($user) {
     return $user->is_admin;
 });
+}
 ```
 - `Gate::define()` : 認可ルールを定義する関数
 

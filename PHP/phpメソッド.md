@@ -134,3 +134,7 @@ chunk : 一度に処理するデータの件数を制限するためのもの
 
 
 substr(文字列, 開始位置, 長さ)
+function_exists() : ()内が存在するかtrue falseで示す
+gc_collect_cycles : 不要なオブジェクトを回収するPHPメソッド
+memory_get_peak_usage : 実行中に使われたメモリの最大値を返す
+「@unserialize」 : シリアライズ文字列を元のデータに戻す（@はエラーを無視）
