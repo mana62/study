@@ -12,7 +12,7 @@
 const obj = { name: 'Mana', age: 30 };
 for (let key in obj) {
   console.log(key);        // 'name', 'age'
-  console.log(obj[key]);   // 'Mana', 30
+  console.log(obj[key]);   // 'Mana', 30（値まで取りたい時は角かっこを使う）
 }
 ```
 

@@ -194,6 +194,12 @@ $response->assertExactJson(['status' => 'ok', 'code' => 200]);
 $response->assertHeader('Content-Type', 'application/json');
 // ヘッダーに指定値があるか
 
+$response->assertJsonStructure(['status']);
+// statusというキーがあるかどうか
+
+$response->assertJsonCount(2);
+// 件数確認（上記の場合は２件あるか）
+
 ```
 
 ---
@@ -262,3 +268,27 @@ $this->assertInstanceOf(Post::class, $post); // 指定クラスのインスタ�
 ## 確認
 ```php
 $response->dump(); // 全体を表示
+```
+
+
+イベント専用テストメソッド
+Event::fake() でイベントを偽装（実際には動かさない）
+Event::assertDispatched() で発火したか確認
+
+```php
+public function test_event()
+{
+    Event::fake(); // イベントを偽装
+
+    User::factory()->create(); // ここで UserRegistered が発火するはず
+
+    Event::assertDispatched(UserRegistered::class); // 発火したか確認
+}
+```
+
+## AJAX
+- `postJson()` : JSONを送るPOSTリクエストをテストで送るためのメソッド
+- `putJson()` : JSONを送るPUTリクエストをテストで送るためのメソッド
+- `getJson()` : JSONレスポンスを期待するGETリクエストを送るメソッド
+- `patchJson()` : JSONを送るPATCHリクエストをテストで送るためのメソッド
+- `X-Requested-With: XMLHttpRequest` : AJAXリクエストとして扱われるようにするためのヘッダー

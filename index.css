@@ -1,0 +1,48 @@
+* {
+  line-height: 1;
+}
+
+.number__child {
+  padding-left: 40px;
+}
+
+.number__parent:nth-of-type(3n) {
+    color: red;
+}
+
+.number__child:nth-child(n+2) {
+    color: blue;
+}
+
+.box1 {
+    width: 500px;
+    height: 250px;
+    background-color: red;
+}
+
+.box2 {
+    width: 500px;
+    height: 250px;
+    background-color: blue;
+}
+
+.box3 {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    margin: 50px 0;
+    border-radius: 60px 0 60px 0;
+    box-shadow: 10px 10px 0 black;
+}
+
+.btn {
+    margin: 30px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #ff5800, #8b00be);
+    box-shadow: 0 5px 0 rgba(255, 0, 0, 0.2);
+    width: 200px;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    border: none;
+}
