@@ -1,0 +1,136 @@
+name: Deploy to Staging via SSH  # このワークフローの名前
+
+on:
+  push:
+    branches: [develop]  # develop ブランチに push されたときだけ実行する
+
+concurrency:
+  group: staging-deploy        # 同じグループ名のジョブは同時に走らない（同時に2つのデプロイをしない）
+  cancel-in-progress: true     # もし前のデプロイが動いていたらキャンセルして新しい方を優先
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest     # GitHub Actions が使う仮想マシン（Ubuntu 最新版）
+    timeout-minutes: 20        # 20 分以上かかったら強制終了
+    environment: staging       # GitHub の環境（Environment）名
+    env:
+      DEPLOY_SHA: ${{ github.sha }}  # デプロイ対象のコミット SHA（push されたもの）
+
+    steps:
+      - name: Deploy to Xserver Staging
+        uses: appleboy/ssh-action@v1.2.0  # SSH でサーバーに接続してコマンドを実行するアクション
+        with:
+          host: ${{ secrets.STAGING_HOST_NAME }}      # 接続先ホスト名（秘密情報）
+          username: ${{ secrets.STAGING_SSH_USER }}   # SSH ユーザー名（秘密情報）
+          key: ${{ secrets.STAGING_SSH_KEY }}         # SSH 秘密鍵（秘密情報）
+          port: 10022                                 # Xserver の SSH ポート
+          fingerprint: ${{ secrets.STAGING_HOST_FINGERPRINT }}  # サーバーが本物か確認
+          debug: false                                # デバッグログを出すかどうか
+          envs: DEPLOY_SHA                             # サーバー側に渡す環境変数
+          script: |
+
+            # ================================
+            # SSH でサーバーに入った後の処理
+            # ================================
+
+            set -eu  # エラーで止める（-e）、未定義変数を禁止（-u）
+
+            # PATH に $HOME/bin を追加
+            export PATH="$HOME/bin:$PATH"
+
+            # nvm（Node Version Manager）があれば読み込む（Node を使うため）
+            [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh"
+
+            # Git リポジトリの場所
+            REPO_DIR="$HOME/suq-crm-laravel"
+
+            # Laravel アプリの場所（src 配下）
+            APP_DIR="$REPO_DIR/src"
+
+            # メンテナンスモードの状態管理用フラグ
+            maintenance_enabled=0
+
+            # -------------------------------
+            # cleanup(): 終了時に必ず実行される関数
+            # デプロイ中にエラーが起きても artisan up を実行してメンテ解除する
+            # -------------------------------
+            cleanup() {
+              if [ "$maintenance_enabled" -eq 1 ]; then
+                cd "$APP_DIR"
+                php artisan up || true  # up に失敗しても無視
+              fi
+            }
+
+            # EXIT（終了）、INT（Ctrl+C）、TERM（kill）時に cleanup を実行
+            trap cleanup EXIT INT TERM
+
+            # Git リポジトリが存在するかチェック
+            [ -d "$REPO_DIR/.git" ] || { echo "Missing git repo: $REPO_DIR" >&2; exit 1; }
+
+            # アプリディレクトリが存在するかチェック
+            [ -d "$APP_DIR" ] || { echo "Missing app dir: $APP_DIR" >&2; exit 1; }
+
+            # -------------------------------
+            # Git の更新処理
+            # -------------------------------
+            cd "$REPO_DIR"
+
+            git fetch --prune origin        # リモートの最新状態を取得し、不要なブランチを削除
+            git checkout --force "$DEPLOY_SHA"  # 指定されたコミットに強制チェックアウト
+            git reset --hard "$DEPLOY_SHA"      # そのコミットの状態に完全に合わせる
+
+            # -------------------------------
+            # Laravel アプリのビルド処理
+            # -------------------------------
+            cd "$APP_DIR"
+
+            # PHP 依存関係を本番向けにインストール
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+
+            # Node 依存関係をインストール（package-lock.json に忠実）
+            npm ci --no-audit --no-fund
+
+            # フロントエンドビルド（Vite / Mix）
+            npm run build
+
+            # -------------------------------
+            # Laravel メンテナンスモード ON
+            # -------------------------------
+            php artisan down || true  # down に失敗しても無視
+            maintenance_enabled=1     # cleanup 用にフラグを立てる
+
+            # -------------------------------
+            # DB マイグレーション
+            # -------------------------------
+            php artisan migrate --force --verbose
+
+            # -------------------------------
+            # キャッシュクリア & 再生成
+            # -------------------------------
+            php artisan optimize:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan event:cache
+
+            # -------------------------------
+            # メンテナンスモード OFF
+            # -------------------------------
+            php artisan up
+            maintenance_enabled=0  # cleanup で up されないようにフラグを戻す
+
+
+
+
+# php.ini
+max_execution_time = 180 # PHPスクリプトの最大実行時間（秒）（3分）
+memory_limit = 1G # PHPが使える最大メモリ（1G = 1024MB）
+post_max_size = 1G # POSTリクエストの最大サイズ
+upload_max_filesize = 1G # アップロードできるファイルの最大サイズ
+
+| 設定                  | 意味        |
+| ------------------- | --------- |
+| max_execution_time  | 3分まで処理OK  |
+| memory_limit        | 1GBメモリOK  |
+| post_max_size       | POST送信1GB |
+| upload_max_filesize | ファイル1GB   |
