@@ -6,7 +6,7 @@
 - nvm : Node.js を**管理するもの**
 - npm : Node.js の中で使う**ライブラリを管理するもの**
 
-## nvm（Node Version Manager）
+## nvm（Node Version taroger）
 ### 何をするもの？
 - Node.js のバージョンをインストールしたり切り替えたりする
 - プロジェクトごとに Node.js のバージョンを変えられる
@@ -19,7 +19,7 @@
 ### 役割のイメージ
 - Node.js 本体を管理する「バージョン切り替えスイッチ」
 
-## npm（Node Package Manager）
+## npm（Node Package taroger）
 ### 何をするもの？
 - Node.js のプロジェクトで使うライブラリ（パッケージ）を管理する
 - package.json に書かれた依存関係をインストールする

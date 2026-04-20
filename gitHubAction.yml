@@ -9,7 +9,13 @@ concurrency:
   cancel-in-progress: true     # もし前のデプロイが動いていたらキャンセルして新しい方を優先
 
 jobs:
+  # ci.yml を再利用してテストを実行する
+  # テストが通った場合のみ deploy job が実行される
+  test:
+    uses: ./.github/workflows/ci.yml
+
   deploy:
+    needs: test # test ジョブが成功した場合のみ実行
     runs-on: ubuntu-latest     # GitHub Actions が使う仮想マシン（Ubuntu 最新版）
     timeout-minutes: 20        # 20 分以上かかったら強制終了
     environment: staging       # GitHub の環境（Environment）名
@@ -38,7 +44,7 @@ jobs:
             # PATH に $HOME/bin を追加
             export PATH="$HOME/bin:$PATH"
 
-            # nvm（Node Version Manager）があれば読み込む（Node を使うため）
+            # nvm（Node Version taroger）があれば読み込む（Node を使うため）
             [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh"
 
             # Git リポジトリの場所

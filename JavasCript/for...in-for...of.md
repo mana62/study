@@ -9,10 +9,10 @@
 <br>
 
 ```js
-const obj = { name: 'Mana', age: 30 };
+const obj = { name: 'taro', age: 30 };
 for (let key in obj) {
   console.log(key);        // 'name', 'age'
-  console.log(obj[key]);   // 'Mana', 30（値まで取りたい時は角かっこを使う）
+  console.log(obj[key]);   // 'taro', 30（値まで取りたい時は角かっこを使う）
 }
 ```
 

@@ -77,7 +77,7 @@ php artisan migrate:generate --connection=mysql2
 <summary>インストール結果</summary>
 
 ```bash
-mana@fukumotomananoMacBook-Air src % composer require --dev kitloong/laravel-migrations-generator
+taro@fukumototaronoMacBook-Air src % composer require --dev kitloong/laravel-migrations-generator
 
 ./composer.json has been updated
 Running composer update kitloong/laravel-migrations-generator
@@ -121,7 +121,7 @@ Using version ^7.2 for kitloong/laravel-migrations-generator
 <summary>実行結果</summary>
 
 ```bash
-mana@fukumotomananoMacBook-Air src % docker exec -it suq-app bash
+taro@fukumototaronoMacBook-Air src % docker exec -it suq-app bash
 
 root@b70a4f90d699:/var/www# php artisan migrate:generate
 Using connection: mysql

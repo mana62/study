@@ -58,7 +58,7 @@ jobs:
          export PATH="$HOME/bin:$PATH"
          # $HOME/bin を PATH に追加 → 独自コマンドを使えるように
         [ -s "$HOME/.nvm/nvm.sh" ] && . "$HOME/.nvm/nvm.sh"
-        #NVM（Node Version Manager）を読み込む → Node / npm コマンドを使えるように
+        #NVM（Node Version taroger）を読み込む → Node / npm コマンドを使えるように
 
             REPO_DIR="$HOME/gitのリポジトリ名"
             # $REPO_DIR → git リポジトリの場所

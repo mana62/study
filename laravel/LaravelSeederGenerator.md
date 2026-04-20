@@ -55,8 +55,8 @@ php artisan db:seed --class=UsersTableSeeder
 DB::table('users')->insert([
     [
         'id' => 1,
-        'name' => 'Mana',
-        'email' => 'mana@example.com',
+        'name' => 'taro',
+        'email' => 'taro@example.com',
         'created_at' => '2025-10-15 10:00:00',
         'updated_at' => '2025-10-15 10:00:00',
     ],

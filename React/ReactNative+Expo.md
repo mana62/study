@@ -25,8 +25,8 @@
 **構成**
 1. Expo CLI：コマンドラインツール（開発・ビルド・デバッグ）
 2. Expo Go アプリ：スマホでアプリをリアルタイム確認
-3. Managed workflow / Bare workflow
-   Managed：Expo にすべて任せる簡単モード
+3. taroged workflow / Bare workflow
+   taroged：Expo にすべて任せる簡単モード
    Bare：ネイティブコードも直接触る柔軟モード
 
 ---

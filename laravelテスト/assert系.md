@@ -108,7 +108,7 @@ $response->assertViewHas('posts', Post::all());
 $response->assertViewHasAll(['posts', 'user']);
 // 複数の変数が渡されたか
 
-$response->assertViewHas('user', fn($u) => $u->email === 'mana@example.com');
+$response->assertViewHas('user', fn($u) => $u->email === 'taro@example.com');
 // コールバックで値を検証
 
 ```
