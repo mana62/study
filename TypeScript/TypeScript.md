@@ -1,6 +1,12 @@
 # TypeScript
 ＝ TypeScript は JavaScript の上位互換（superset）であり、静的型システムを持ち、最終的に JavaScript にコンパイルされる言語
 
+
+- JavaScript → ゆるい（動的型付け）
+- strictモード → JSをちょっと厳しくする
+- TypeScript → そもそも別のチェック機構（静的型付け）
+- **「TypeScriptは strictモードの強化版ではなく、事前検査システム」**
+
 ## 上位集合（上位互換）とは
 TypeScript は JavaScript の**すべての文法をそのまま使える**
 
